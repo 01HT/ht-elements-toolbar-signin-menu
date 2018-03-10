@@ -1,20 +1,19 @@
 {
   "name": "ht-elements-toolbar-signin-menu",
-  "flat": true,
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "ht-elements-toolbar-signin-menu.js",
   "repository":
     "https://github.com/maksimyurkov/ht-elements-toolbar-signin-menu",
   "author": "maksimyurkov <yurkov.maksim.sergeevich@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@polymer/lit-element": "^3.0.0-pre.10",
-    "@polymer/paper-styles": "^3.0.0-pre.10",
-    "@polymer/paper-item": "^3.0.0-pre.10",
+    "@polymer/lit-element": "@next",
+    "@polymer/paper-styles": "@next",
+    "@polymer/paper-item": "@next",
     "ht-toolbar-cart": "https://github.com/maksimyurkov/ht-toolbar-cart",
     "ht-toolbar-balance": "https://github.com/maksimyurkov/ht-toolbar-balance"
   },
   "resolutions": {
-    "@polymer/paper-styles": "3.0.0-pre.10"
+    "@polymer/paper-styles": "@next"
   }
 }
