@@ -206,7 +206,6 @@ class HTElementsToolbarSigninMenu extends LitElement {
     );
     for (let elem of elems) {
       elem.addEventListener("click", e => {
-        e.preventDefault();
         this._closeMenu();
       });
     }
