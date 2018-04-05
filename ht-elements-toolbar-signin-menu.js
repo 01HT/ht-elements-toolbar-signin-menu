@@ -192,8 +192,8 @@ class HTElementsToolbarSigninMenu extends LitElement {
         { href: "/", title: "Коллекции" }
       ],
       author: [
-        { href: "/", title: "Добавить продукт" },
-        { href: "/", title: "Мои продукты" },
+        { href: "/item-add", title: "Добавить продукт" },
+        { href: "/my-items", title: "Мои продукты" },
         { href: "/", title: "Статистика" }
       ]
     };
