@@ -7,7 +7,7 @@ import "ht-toolbar-balance/ht-toolbar-balance.js";
 import "@polymer/paper-styles/default-theme.js";
 
 class HTElementsToolbarSigninMenu extends LitElement {
-  render({
+  _render({
     photoURL,
     displayName,
     balance,
