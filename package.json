@@ -7,13 +7,10 @@
   "author": "maksimyurkov <yurkov.maksim.sergeevich@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@polymer/lit-element": "@next",
-    "@polymer/paper-styles": "@next",
-    "@polymer/paper-item": "@next",
+    "@polymer/lit-element": "^0.5.1",
+    "@polymer/paper-styles": "^3.0.0-pre.18",
+    "@polymer/paper-item": "^3.0.0-pre.18",
     "ht-toolbar-cart": "https://github.com/maksimyurkov/ht-toolbar-cart",
     "ht-toolbar-balance": "https://github.com/maksimyurkov/ht-toolbar-balance"
-  },
-  "resolutions": {
-    "@polymer/paper-styles": "@next"
   }
 }
