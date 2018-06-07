@@ -124,7 +124,7 @@ class HTElementsToolbarSigninMenu extends LitElement {
             <div id="provider">${email}</div>
             <div id="cart-and-balance">
               <ht-toolbar-cart href="/cart" quantity$=${cartQuantity} hidden?=${!smallScreen}></ht-toolbar-cart>
-              <ht-toolbar-balance href="/balance" balance$=${balance}></ht-toolbar-balance>
+              <ht-toolbar-balance href="/payments" balance$=${balance}></ht-toolbar-balance>
             </div>
           </div>
         </div>
@@ -185,16 +185,16 @@ class HTElementsToolbarSigninMenu extends LitElement {
     super();
     this.menu = {
       account: [
-        { href: "/", title: "Мой профайл" },
-        { href: "/", title: "Платежи" },
-        { href: "/", title: "Мои покупки" },
-        { href: "/", title: "Избранное" },
-        { href: "/", title: "Коллекции" }
+        { href: "/account", title: "Мой аккаунт" },
+        { href: "/payments", title: "Мои платежи" },
+        { href: "/purchases", title: "Мои покупки" }
+        // { href: "/", title: "Избранное" },
+        // { href: "/", title: "Коллекции" }
       ],
       author: [
         { href: "/item-add", title: "Добавить продукт" },
-        { href: "/my-items", title: "Мои продукты" },
-        { href: "/", title: "Статистика" }
+        { href: "/my-items", title: "Мои продукты" }
+        // { href: "/", title: "Статистика" }
       ]
     };
   }
