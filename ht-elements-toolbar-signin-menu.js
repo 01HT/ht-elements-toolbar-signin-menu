@@ -2,9 +2,9 @@
 import { LitElement, html } from "@polymer/lit-element";
 import { repeat } from "lit-html/lib/repeat.js";
 import "@polymer/paper-item/paper-item.js";
-import "ht-toolbar-cart/ht-toolbar-cart.js";
-import "ht-toolbar-balance/ht-toolbar-balance.js";
 import "@polymer/paper-styles/default-theme.js";
+import "@01ht/ht-toolbar-cart";
+import "@01ht/ht-toolbar-balance";
 
 class HTElementsToolbarSigninMenu extends LitElement {
   _render({
