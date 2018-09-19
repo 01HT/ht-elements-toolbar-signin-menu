@@ -1,15 +1,14 @@
 {
   "name": "@01ht/ht-elements-toolbar-signin-menu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "ht-elements-toolbar-signin-menu.js",
-  "repository":
-    "01ht/ht-elements-toolbar-signin-menu",
-  "author": "01ht Ltd",
+  "repository": "01ht/ht-elements-toolbar-signin-menu",
+  "author": "01HT Ltd",
   "license": "UNLICENSED",
   "dependencies": {
-    "@polymer/lit-element": "^0.5.1",
-    "@polymer/paper-styles": "^3.0.0-pre.18",
-    "@polymer/paper-item": "^3.0.0-pre.18",
+    "@polymer/lit-element": "^0.6.1",
+    "@polymer/paper-styles": "^3.0.1",
+    "@polymer/paper-item": "^3.0.1",
     "@01ht/ht-toolbar-cart": "^1.0.0",
     "@01ht/ht-toolbar-balance": "^1.0.0"
   }

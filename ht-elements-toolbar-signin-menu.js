@@ -1,22 +1,23 @@
 "use strict";
 import { LitElement, html } from "@polymer/lit-element";
-import { repeat } from "lit-html/lib/repeat.js";
+import { repeat } from "lit-html/directives/repeat.js";
 import "@polymer/paper-item/paper-item.js";
 import "@polymer/paper-styles/default-theme.js";
 import "@01ht/ht-toolbar-cart";
 import "@01ht/ht-toolbar-balance";
 
 class HTElementsToolbarSigninMenu extends LitElement {
-  _render({
-    photoURL,
-    displayName,
-    balance,
-    email,
-    smallScreen,
-    isAuthor,
-    menu,
-    cartQuantity
-  }) {
+  render() {
+    const {
+      menu,
+      avatar,
+      isAuthor,
+      displayName,
+      email,
+      smallScreen,
+      balance,
+      cartQuantity
+    } = this;
     return html`
       <style>
         :host {
@@ -118,13 +119,21 @@ class HTElementsToolbarSigninMenu extends LitElement {
       </style>
       <div id="container">
         <div id="info">
-          <img src="${photoURL}" alt="">
+          ${
+            avatar
+              ? html`<img src="${
+                  window.cloudinaryURL
+                }/c_scale,r_max,f_auto,h_128,w_128/v${avatar.version}/${
+                  avatar.public_id
+                }.${avatar.format}" alt="">`
+              : ""
+          }
           <div id="user">
             <div id="name">${displayName}</div>
             <div id="provider">${email}</div>
             <div id="cart-and-balance">
-              <ht-toolbar-cart href="/cart" quantity$=${cartQuantity} hidden?=${!smallScreen}></ht-toolbar-cart>
-              <ht-toolbar-balance href="/payments" balance$=${balance}></ht-toolbar-balance>
+              <ht-toolbar-cart href="/cart" .quantity=${cartQuantity} ?hidden=${!smallScreen}></ht-toolbar-cart>
+              <ht-toolbar-balance href="/payments" balance=${balance}></ht-toolbar-balance>
             </div>
           </div>
         </div>
@@ -142,23 +151,21 @@ class HTElementsToolbarSigninMenu extends LitElement {
           <div class="divider"></div>
         </div>
 
-        <div id="author" hidden?="${!isAuthor}">
+        <div id="author" ?hidden=${!isAuthor}>
           <div id="header">Настройки автора</div>
-
            ${repeat(
              menu.author,
              i => html`
             <a href="${i.href}"><paper-item>${i.title}</paper-item></a>
           `
            )}
-
           <div class="divider"></div>
         </div>
         
-        <paper-item id="signout" on-click="${e => {
+        <paper-item id="signout" @click=${e => {
           e.preventDefault();
           this.signOut();
-        }}">Выйти</paper-item>
+        }}>Выйти</paper-item>
 
       </div>
 `;
@@ -170,14 +177,14 @@ class HTElementsToolbarSigninMenu extends LitElement {
 
   static get properties() {
     return {
-      photoURL: String,
-      displayName: String,
-      balance: Number,
-      email: String,
-      smallScreen: Boolean,
-      isAuthor: Boolean,
-      menu: Object,
-      cartQuantity: Number
+      avatar: { type: Object },
+      displayName: { type: String },
+      balance: { type: Number },
+      email: { type: String },
+      smallScreen: { type: Boolean },
+      isAuthor: { type: Boolean },
+      menu: { type: Object },
+      cartQuantity: { type: Number }
     };
   }
 
@@ -192,15 +199,14 @@ class HTElementsToolbarSigninMenu extends LitElement {
         // { href: "/", title: "Коллекции" }
       ],
       author: [
-        { href: "/item-add", title: "Добавить продукт" },
-        { href: "/my-items", title: "Мои продукты" }
+        { href: "/my-items", title: "Мои продукты" },
+        { href: "/my-organizations", title: "Мои организации" }
         // { href: "/", title: "Статистика" }
       ]
     };
   }
 
-  ready() {
-    super.ready();
+  firstUpdated() {
     let elems = this.shadowRoot.querySelectorAll(
       "a, ht-toolbar-cart, ht-toolbar-balance, #signout"
     );
