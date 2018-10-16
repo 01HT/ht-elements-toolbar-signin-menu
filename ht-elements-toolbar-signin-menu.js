@@ -223,8 +223,9 @@ class HTElementsToolbarSigninMenu extends LitElement {
 
   signOut() {
     this.dispatchEvent(
-      new CustomEvent("signout", {
-        bubbles: false
+      new CustomEvent("on-signout", {
+        bubbles: true,
+        composed: true
       })
     );
   }
