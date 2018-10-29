@@ -30,6 +30,7 @@ class HTElementsToolbarSigninMenu extends LitElement {
             text-decoration: none;
             color: inherit;
             outline: none;
+            display: block;
         }
 
         img {
@@ -132,8 +133,16 @@ class HTElementsToolbarSigninMenu extends LitElement {
             <div id="name">${displayName}</div>
             <div id="provider">${email}</div>
             <div id="cart-and-balance">
-              <ht-toolbar-cart href="/cart" .quantity=${cartQuantity} ?hidden=${!smallScreen}></ht-toolbar-cart>
-              <ht-toolbar-balance href="/payments" balance=${balance}></ht-toolbar-balance>
+              <ht-toolbar-cart @click=${_ => {
+                this._changePath("/cart");
+              }} @tap=${_ => {
+      this._changePath("/cart");
+    }} .quantity=${cartQuantity} ?hidden=${!smallScreen}></ht-toolbar-cart>
+              <ht-toolbar-balance @click=${_ => {
+                this._changePath("/payments");
+              }} @tap=${_ => {
+      this._changePath("/payments");
+    }} balance=${balance}></ht-toolbar-balance>
             </div>
           </div>
         </div>
@@ -144,7 +153,11 @@ class HTElementsToolbarSigninMenu extends LitElement {
           ${repeat(
             menu.account,
             i => html`
-            <a href="${i.href}"><paper-item>${i.title}</paper-item></a>
+            <paper-item @click=${_ => {
+              this._changePath(i.href);
+            }} @tap=${_ => {
+              this._changePath(i.href);
+            }}>${i.title}</paper-item>
           `
           )}
 
@@ -156,14 +169,17 @@ class HTElementsToolbarSigninMenu extends LitElement {
            ${repeat(
              menu.author,
              i => html`
-            <a href="${i.href}"><paper-item>${i.title}</paper-item></a>
+           <paper-item @click=${_ => {
+             this._changePath(i.href);
+           }} @tap=${_ => {
+               this._changePath(i.href);
+             }}>${i.title}</paper-item>
           `
            )}
           <div class="divider"></div>
         </div>
         
         <paper-item id="signout" @click=${e => {
-          e.preventDefault();
           this.signOut();
         }}>Выйти</paper-item>
 
@@ -206,15 +222,17 @@ class HTElementsToolbarSigninMenu extends LitElement {
     };
   }
 
-  firstUpdated() {
-    let elems = this.shadowRoot.querySelectorAll(
-      "a, ht-toolbar-cart, ht-toolbar-balance, #signout"
+  _changePath(pathname) {
+    this.dispatchEvent(
+      new CustomEvent("update-pathname", {
+        bubbles: true,
+        composed: true,
+        detail: {
+          pathname: pathname
+        }
+      })
     );
-    for (let elem of elems) {
-      elem.addEventListener("click", e => {
-        this._closeMenu();
-      });
-    }
+    this._closeMenu();
   }
 
   _closeMenu() {
