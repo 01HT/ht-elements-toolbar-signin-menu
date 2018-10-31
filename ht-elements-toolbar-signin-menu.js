@@ -209,8 +209,9 @@ class HTElementsToolbarSigninMenu extends LitElement {
     this.menu = {
       account: [
         { href: "/account", title: "Мой аккаунт" },
-        { href: "/payments", title: "Мои платежи" },
-        { href: "/purchases", title: "Мои покупки" }
+        { href: "/my-licenses", title: "Мои лицензии" },
+        { href: "/my-orders", title: "Мои заказы" }
+        // { href: "/payments", title: "Мои покупки" },
         // { href: "/", title: "Избранное" },
         // { href: "/", title: "Коллекции" }
       ],
