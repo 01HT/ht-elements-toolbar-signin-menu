@@ -126,23 +126,23 @@ class HTElementsToolbarSigninMenu extends LitElement {
                   window.cloudinaryURL
                 }/c_scale,r_max,f_auto,h_128,w_128/v${avatar.version}/${
                   avatar.public_id
-                }.${avatar.format}" alt="">`
+                }.${avatar.format}" alt="${displayName} avatar">`
               : ""
           }
           <div id="user">
             <div id="name">${displayName}</div>
             <div id="provider">${email}</div>
             <div id="cart-and-balance">
-              <ht-toolbar-cart @click=${_ => {
-                this._changePath("/cart");
-              }} @tap=${_ => {
+              <ht-toolbar-cart .href=${"/cart"} @click=${_ => {
+      this._changePath("/cart");
+    }} @tap=${_ => {
       this._changePath("/cart");
     }} .quantity=${cartQuantity} ?hidden=${!smallScreen}></ht-toolbar-cart>
-              <ht-toolbar-balance @click=${_ => {
-                this._changePath("/payments");
-              }} @tap=${_ => {
-      this._changePath("/payments");
-    }} balance=${balance}></ht-toolbar-balance>
+              <ht-toolbar-balance .href=${"/my-payments"} .balance=${balance}  @click=${_ => {
+      this._changePath("/my-payments");
+    }} @tap=${_ => {
+      this._changePath("/my-payments");
+    }}></ht-toolbar-balance>
             </div>
           </div>
         </div>
@@ -210,15 +210,14 @@ class HTElementsToolbarSigninMenu extends LitElement {
       account: [
         { href: "/account", title: "Мой аккаунт" },
         { href: "/my-licenses", title: "Мои лицензии" },
-        { href: "/my-orders", title: "Мои заказы" }
-        // { href: "/payments", title: "Мои покупки" },
+        { href: "/my-payments", title: "Мои платежи" }
         // { href: "/", title: "Избранное" },
         // { href: "/", title: "Коллекции" }
       ],
       author: [
         { href: "/my-items", title: "Мои элементы" },
-        { href: "/my-organizations", title: "Мои организации" }
-        // { href: "/", title: "Статистика" }
+        { href: "/my-organizations", title: "Мои организации" },
+        { href: "/my-statistics", title: "Моя статистика" }
       ]
     };
   }
