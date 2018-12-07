@@ -138,10 +138,10 @@ class HTElementsToolbarSigninMenu extends LitElement {
     }} @tap=${_ => {
       this._changePath("/cart");
     }} .quantity=${cartQuantity} ?hidden=${!smallScreen}></ht-toolbar-cart>
-              <ht-toolbar-balance .href=${"/my-payments"} .balance=${balance}  @click=${_ => {
-      this._changePath("/my-payments");
+              <ht-toolbar-balance .href=${"/my-statistics"} .balance=${balance}  @click=${_ => {
+      this._changePath("/my-statistics");
     }} @tap=${_ => {
-      this._changePath("/my-payments");
+      this._changePath("/my-statistics");
     }}></ht-toolbar-balance>
             </div>
           </div>
@@ -210,7 +210,7 @@ class HTElementsToolbarSigninMenu extends LitElement {
       account: [
         { href: "/account", title: "Мой аккаунт" },
         { href: "/my-licenses", title: "Мои лицензии" },
-        { href: "/my-payments", title: "Мои платежи" }
+        { href: "/my-orders", title: "Мои заказы" }
         // { href: "/", title: "Избранное" },
         // { href: "/", title: "Коллекции" }
       ],
