@@ -91,6 +91,9 @@ class HTElementsToolbarSigninMenu extends LitElement {
         #cart-and-balance {
           display: flex;
           align-items: center;
+        }
+        
+        #cart-and-balance > * {
           padding: 8px 0;
         }
 
@@ -138,7 +141,7 @@ class HTElementsToolbarSigninMenu extends LitElement {
     }} @tap=${_ => {
       this._changePath("/cart");
     }} .quantity=${cartQuantity} ?hidden=${!smallScreen}></ht-toolbar-cart>
-              <ht-toolbar-balance .href=${"/my-statistics"} .balance=${balance}  @click=${_ => {
+              <ht-toolbar-balance .href=${"/my-statistics"} ?hidden=${!isAuthor} .balance=${balance} @click=${_ => {
       this._changePath("/my-statistics");
     }} @tap=${_ => {
       this._changePath("/my-statistics");
