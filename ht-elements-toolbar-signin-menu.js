@@ -1,5 +1,5 @@
 "use strict";
-import { LitElement, html } from "@polymer/lit-element";
+import { LitElement, html, css } from "lit-element";
 import { repeat } from "lit-html/directives/repeat.js";
 import "@polymer/paper-item/paper-item.js";
 import "@polymer/paper-styles/default-theme.js";
@@ -7,19 +7,7 @@ import "@01ht/ht-toolbar-cart";
 import "@01ht/ht-toolbar-balance";
 
 class HTElementsToolbarSigninMenu extends LitElement {
-  render() {
-    const {
-      menu,
-      avatar,
-      isAuthor,
-      displayName,
-      email,
-      smallScreen,
-      balance,
-      cartQuantity
-    } = this;
-    return html`
-      <style>
+  static styles = css`<style>
         :host {
             display: block;
             position: relative;
@@ -120,7 +108,20 @@ class HTElementsToolbarSigninMenu extends LitElement {
         [hidden] {
           display: none;
         }
-      </style>
+      </style>`;
+
+  render() {
+    const {
+      menu,
+      avatar,
+      isAuthor,
+      displayName,
+      email,
+      smallScreen,
+      balance,
+      cartQuantity
+    } = this;
+    return html`
       <div id="container">
         <div id="info">
           ${
@@ -136,16 +137,16 @@ class HTElementsToolbarSigninMenu extends LitElement {
             <div id="name">${displayName}</div>
             <div id="provider">${email}</div>
             <div id="cart-and-balance">
-              <ht-toolbar-cart .href=${"/cart"} @click=${_ => {
+              <ht-toolbar-cart .href="${"/cart"}" @click="${_ => {
       this._changePath("/cart");
-    }} @tap=${_ => {
+    }}" @tap="${_ => {
       this._changePath("/cart");
-    }} .quantity=${cartQuantity} ?hidden=${!smallScreen}></ht-toolbar-cart>
-              <ht-toolbar-balance .href=${"/my-statistics"} ?hidden=${!isAuthor} .balance=${balance} @click=${_ => {
+    }}" .quantity="${cartQuantity}" ?hidden="${!smallScreen}"></ht-toolbar-cart>
+              <ht-toolbar-balance .href=${"/my-statistics"} ?hidden="${!isAuthor}" .balance="${balance}" @click="${_ => {
       this._changePath("/my-statistics");
-    }} @tap=${_ => {
+    }}" @tap="${_ => {
       this._changePath("/my-statistics");
-    }}></ht-toolbar-balance>
+    }}"></ht-toolbar-balance>
             </div>
           </div>
         </div>
@@ -156,42 +157,38 @@ class HTElementsToolbarSigninMenu extends LitElement {
           ${repeat(
             menu.account,
             i => html`
-            <paper-item @click=${_ => {
+            <paper-item @click="${_ => {
               this._changePath(i.href);
-            }} @tap=${_ => {
+            }}" @tap="${_ => {
               this._changePath(i.href);
-            }}>${i.title}</paper-item>
+            }}">${i.title}</paper-item>
           `
           )}
 
           <div class="divider"></div>
         </div>
 
-        <div id="author" ?hidden=${!isAuthor}>
+        <div id="author" ?hidden="${!isAuthor}">
           <div id="header">Настройки автора</div>
            ${repeat(
              menu.author,
              i => html`
-           <paper-item @click=${_ => {
+           <paper-item @click="${_ => {
              this._changePath(i.href);
-           }} @tap=${_ => {
+           }}" @tap="${_ => {
                this._changePath(i.href);
-             }}>${i.title}</paper-item>
+             }}">${i.title}</paper-item>
           `
            )}
           <div class="divider"></div>
         </div>
         
-        <paper-item id="signout" @click=${e => {
+        <paper-item id="signout" @click="${e => {
           this.signOut();
-        }}>Выйти</paper-item>
+        }}">Выйти</paper-item>
 
       </div>
 `;
-  }
-
-  static get is() {
-    return "ht-elements-toolbar-signin-menu";
   }
 
   static get properties() {
@@ -253,6 +250,6 @@ class HTElementsToolbarSigninMenu extends LitElement {
 }
 
 customElements.define(
-  HTElementsToolbarSigninMenu.is,
+  "ht-elements-toolbar-signin-menu",
   HTElementsToolbarSigninMenu
 );
