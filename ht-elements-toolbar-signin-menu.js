@@ -6,64 +6,63 @@ import "@polymer/paper-styles/default-theme.js";
 import "@01ht/ht-toolbar-cart";
 import "@01ht/ht-toolbar-balance";
 
-class HTElementsToolbarSigninMenu extends LitElement {
-  static styles = css`<style>
-        :host {
-            display: block;
-            position: relative;
-            box-sizing: border-box;
-        }
+import { stylesBasicWebcomponents } from "@01ht/ht-theme/styles";
 
+class HTElementsToolbarSigninMenu extends LitElement {
+  static get styles() {
+    return [
+      stylesBasicWebcomponents,
+      css`
         a {
-            text-decoration: none;
-            color: inherit;
-            outline: none;
-            display: block;
+          text-decoration: none;
+          color: inherit;
+          outline: none;
+          display: block;
         }
 
         img {
           display: block;
           width: 64px;
-          height:64px;
-          border-radius:50%;
-          margin-right:16px;
+          height: 64px;
+          border-radius: 50%;
+          margin-right: 16px;
         }
 
         #container {
-          display:flex;
+          display: flex;
           flex-direction: column;
-          background:#fff;
-          width:270px;
-          overflow:hidden;
-          position:relative;
+          background: #fff;
+          width: 270px;
+          overflow: hidden;
+          position: relative;
         }
 
         .divider {
           height: 1px;
-          background:#dedede;
+          background: #dedede;
         }
 
         #info {
           display: flex;
-          max-width:100%;
+          max-width: 100%;
           width: 100%;
-          box-sizing:border-box;
-          align-items:center;
+          box-sizing: border-box;
+          align-items: center;
           padding: 16px 16px 8px 16px;
           text-overflow: ellipsis;
-          overflow:hidden;
-          position:relative;
+          overflow: hidden;
+          position: relative;
         }
 
         #user {
-          width:100%;
+          width: 100%;
           max-width: calc(100% - 80px);
         }
 
         #name {
           font-size: 14px;
-          max-height:42px;
-          font-weight:500;
+          max-height: 42px;
+          font-weight: 500;
         }
 
         #provider {
@@ -71,8 +70,9 @@ class HTElementsToolbarSigninMenu extends LitElement {
           color: var(--secondary-text-color);
         }
 
-        #name, #provider {
-          overflow:hidden;
+        #name,
+        #provider {
+          overflow: hidden;
           text-overflow: ellipsis;
         }
 
@@ -80,13 +80,13 @@ class HTElementsToolbarSigninMenu extends LitElement {
           display: flex;
           align-items: center;
         }
-        
+
         #cart-and-balance > * {
           padding: 8px 0;
         }
 
         ht-toolbar-cart {
-          margin-right:16px;
+          margin-right: 16px;
         }
 
         #header {
@@ -96,9 +96,9 @@ class HTElementsToolbarSigninMenu extends LitElement {
         }
 
         paper-item {
-          font-size:13px;
+          font-size: 13px;
           cursor: pointer;
-          min-height:38px;
+          min-height: 38px;
         }
 
         paper-item:hover {
@@ -108,7 +108,9 @@ class HTElementsToolbarSigninMenu extends LitElement {
         [hidden] {
           display: none;
         }
-      </style>`;
+      `
+    ];
+  }
 
   render() {
     const {
