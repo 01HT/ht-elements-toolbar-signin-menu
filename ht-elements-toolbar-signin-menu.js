@@ -187,8 +187,9 @@ class HTElementsToolbarSigninMenu extends LitElement {
         
         <paper-item id="signout" @click="${e => {
           this.signOut();
-        }}">Выйти</paper-item>
-
+        }}" @tap="${e => {
+      this.signOut();
+    }}">Выйти</paper-item>
       </div>
 `;
   }
