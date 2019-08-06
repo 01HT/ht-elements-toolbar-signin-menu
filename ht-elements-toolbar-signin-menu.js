@@ -129,7 +129,7 @@ class HTElementsToolbarSigninMenu extends LitElement {
           ${
             avatar
               ? html`<img src="${
-                  window.cloudinaryURL
+                  window.appConfig.cloudinary.url
                 }/c_scale,r_max,f_auto,h_128,w_128/v${avatar.version}/${
                   avatar.public_id
                 }.${avatar.format}" alt="${displayName} avatar">`
