@@ -1,17 +1,22 @@
 "use strict";
 import { LitElement, html, css } from "lit-element";
 import { repeat } from "lit-html/directives/repeat.js";
+import "@polymer/iron-iconset-svg/iron-iconset-svg.js";
+import "@polymer/iron-icon/iron-icon.js";
 import "@polymer/paper-item/paper-item.js";
+import "@polymer/paper-item/paper-icon-item.js";
 import "@polymer/paper-styles/default-theme.js";
+import "@polymer/paper-button/paper-button.js";
 import "@01ht/ht-toolbar-cart";
 import "@01ht/ht-toolbar-balance";
 
-import { stylesBasicWebcomponents } from "@01ht/ht-theme/styles";
+import { stylesBasicWebcomponents, stylesUI } from "@01ht/ht-theme/styles";
 
 class HTElementsToolbarSigninMenu extends LitElement {
   static get styles() {
     return [
       stylesBasicWebcomponents,
+      stylesUI,
       css`
         a {
           text-decoration: none;
@@ -26,6 +31,24 @@ class HTElementsToolbarSigninMenu extends LitElement {
           height: 64px;
           border-radius: 50%;
           margin-right: 16px;
+        }
+
+        iron-icon {
+          color: var(--secondary-text-color);
+        }
+
+        paper-button {
+          font-size: 13px;
+          margin-top: 0;
+          text-transform: none;
+          font-weight: 700;
+          line-height: 1rem;
+          padding: 0 8px;
+          min-height: 30px;
+        }
+
+        paper-item iron-icon {
+          margin-right: 8px;
         }
 
         #container {
@@ -48,7 +71,7 @@ class HTElementsToolbarSigninMenu extends LitElement {
           width: 100%;
           box-sizing: border-box;
           align-items: center;
-          padding: 16px 16px 8px 16px;
+          padding: 16px;
           text-overflow: ellipsis;
           overflow: hidden;
           position: relative;
@@ -89,6 +112,10 @@ class HTElementsToolbarSigninMenu extends LitElement {
           margin-right: 16px;
         }
 
+        #myaccount a {
+          float: left;
+        }
+
         #header {
           font-size: 14px;
           font-weight: 500;
@@ -124,6 +151,13 @@ class HTElementsToolbarSigninMenu extends LitElement {
       cartQuantity
     } = this;
     return html`
+      <iron-iconset-svg size="24" name="ht-elements-toolbar-signin-menu">
+      <svg>
+        <defs>
+            <g id="exit-to-app"><path d="M10.09 15.59L11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"></path></g>    
+        </defs>
+      </svg>
+    </iron-iconset-svg>
       <div id="container">
         <div id="info">
           ${
@@ -150,6 +184,11 @@ class HTElementsToolbarSigninMenu extends LitElement {
       this._changePath("/my-statistics");
     }}"></ht-toolbar-balance>
             </div>
+            <div id="myaccount">
+              <a href="https://myaccount.01.ht/" target="_blank" >
+                <paper-button raised>Аккаунт 01HT</paper-button>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -175,11 +214,15 @@ class HTElementsToolbarSigninMenu extends LitElement {
            ${repeat(
              menu.author,
              i => html`
-           <paper-item @click="${_ => {
-             this._changePath(i.href);
-           }}" @tap="${_ => {
-               this._changePath(i.href);
-             }}">${i.title}</paper-item>
+             ${
+               i.divider
+                 ? html`<div class="divider"></div>`
+                 : html`<paper-item @click="${_ => {
+                     this._changePath(i.href);
+                   }}" @tap="${_ => {
+                     this._changePath(i.href);
+                   }}">${i.title}</paper-item>`
+             }
           `
            )}
           <div class="divider"></div>
@@ -189,7 +232,10 @@ class HTElementsToolbarSigninMenu extends LitElement {
           this.signOut();
         }}" @tap="${e => {
       this.signOut();
-    }}">Выйти</paper-item>
+    }}">
+          <iron-icon icon="ht-elements-toolbar-signin-menu:exit-to-app"></iron-icon>
+          Выйти
+        </paper-item>
       </div>
 `;
   }
@@ -211,7 +257,6 @@ class HTElementsToolbarSigninMenu extends LitElement {
     super();
     this.menu = {
       account: [
-        { href: "/account", title: "Мой аккаунт" },
         { href: "/my-licenses", title: "Мои лицензии" },
         { href: "/my-orders", title: "Мои заказы" }
         // { href: "/", title: "Избранное" },
@@ -220,7 +265,10 @@ class HTElementsToolbarSigninMenu extends LitElement {
       author: [
         { href: "/my-items", title: "Мои элементы" },
         { href: "/my-organizations", title: "Мои организации" },
-        { href: "/my-statistics", title: "Моя статистика" }
+        { href: "/my-statistics", title: "Моя статистика" },
+        { divider: true },
+        { href: "/contract", title: "Настройки договора" },
+        { href: "/payout", title: "Настройки выплат" }
       ]
     };
   }

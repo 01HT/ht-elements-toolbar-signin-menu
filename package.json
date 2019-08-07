@@ -10,6 +10,8 @@
     "@polymer/paper-styles": "^3.0.1",
     "@polymer/paper-item": "^3.0.1",
     "@01ht/ht-toolbar-cart": "01ht/ht-toolbar-cart",
-    "@01ht/ht-toolbar-balance": "01ht/ht-toolbar-balance"
+    "@01ht/ht-toolbar-balance": "01ht/ht-toolbar-balance",
+    "@polymer/iron-icon": "^3.0.1",
+    "@polymer/iron-iconset-svg": "^3.0.1"
   }
 }
