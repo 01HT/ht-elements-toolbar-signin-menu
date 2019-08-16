@@ -185,7 +185,7 @@ class HTElementsToolbarSigninMenu extends LitElement {
     }}"></ht-toolbar-balance>
             </div>
             <div id="myaccount">
-              <a href="https://myaccount.01.ht/" target="_blank" >
+              <a href="https://myaccount.01.ht/" rel="noopener" rel="noreferrer" target="_blank" >
                 <paper-button raised>Аккаунт 01HT</paper-button>
               </a>
             </div>
