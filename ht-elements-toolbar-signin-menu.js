@@ -58,6 +58,8 @@ class HTElementsToolbarSigninMenu extends LitElement {
           width: 270px;
           overflow: hidden;
           position: relative;
+          overflow: auto;
+          max-height: calc(100vh - 64px);
         }
 
         .divider {
@@ -73,7 +75,6 @@ class HTElementsToolbarSigninMenu extends LitElement {
           align-items: center;
           padding: 16px;
           text-overflow: ellipsis;
-          overflow: hidden;
           position: relative;
         }
 
@@ -110,10 +111,6 @@ class HTElementsToolbarSigninMenu extends LitElement {
 
         ht-toolbar-cart {
           margin-right: 16px;
-        }
-
-        #myaccount a {
-          float: left;
         }
 
         #header {
@@ -185,9 +182,11 @@ class HTElementsToolbarSigninMenu extends LitElement {
     }}"></ht-toolbar-balance>
             </div>
             <div id="myaccount">
-              <a href="https://myaccount.01.ht/" rel="noopener" rel="noreferrer" target="_blank" >
-                <paper-button raised>Аккаунт 01HT</paper-button>
-              </a>
+                <paper-button raised @tap="${_ => {
+                  this._changeLocation("https://myaccount.01.ht");
+                }}" @click="${_ => {
+      this._changeLocation("https://myaccount.01.ht");
+    }}">Аккаунт 01HT</paper-button>
             </div>
           </div>
         </div>
@@ -271,6 +270,10 @@ class HTElementsToolbarSigninMenu extends LitElement {
         { href: "/payout", title: "Настройки выплат" }
       ]
     };
+  }
+
+  _changeLocation(href) {
+    window.location.href = href;
   }
 
   _changePath(pathname) {
